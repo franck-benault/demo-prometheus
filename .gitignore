@@ -23,5 +23,8 @@ hs_err_pid*
 RemoteSystemsTempFiles/
 .metadata/
 .sonarlint/
-*/.project
-*/.settings/
+**/.project
+**/.settings/
+**/infinitest.filters
+**/.classpath
+**/*.bat
