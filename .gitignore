@@ -28,3 +28,4 @@ RemoteSystemsTempFiles/
 **/infinitest.filters
 **/.classpath
 **/*.bat
+**/target/

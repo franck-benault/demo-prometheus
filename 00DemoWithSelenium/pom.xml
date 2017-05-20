@@ -63,9 +63,9 @@
 			</plugin>
 		</plugins>
 	</build>
-	<!-- modules>
+	<modules>
 		<module>01CommonSelenium</module>
 		<module>03SimpleActions</module>
 		<module>02SmokeTests</module>
-	</modules-->
+	</modules>
 </project>
