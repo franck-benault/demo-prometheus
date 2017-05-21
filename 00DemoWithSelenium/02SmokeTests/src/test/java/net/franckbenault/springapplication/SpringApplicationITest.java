@@ -10,9 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Proxy.ProxyType;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-
-import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 import util.page.springapplication.SpringApplicationMainPage;
 import util.page.springapplication.SpringApplicationMetricsPage;
@@ -31,6 +28,7 @@ public class SpringApplicationITest {
 
 		FirefoxProfile ff = new FirefoxProfile();
 		ff.setPreference("network.proxy.type", ProxyType.AUTODETECT.ordinal());
+		ff.setPreference("plugin.state.java" , 2);
 		driver = new FirefoxDriver(ff);
 
 		
