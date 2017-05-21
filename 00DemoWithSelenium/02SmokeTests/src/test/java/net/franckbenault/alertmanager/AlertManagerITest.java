@@ -28,6 +28,8 @@ public class AlertManagerITest {
 
 		FirefoxProfile ff = new FirefoxProfile();
 		ff.setPreference("network.proxy.type", ProxyType.AUTODETECT.ordinal());
+		//ff.addExtension(extensionToInstall);
+		
 		driver = new FirefoxDriver(ff);
 		
 		
