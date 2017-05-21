@@ -5,8 +5,8 @@ import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Proxy.ProxyType;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
@@ -14,6 +14,7 @@ import util.page.prometheus.ConfigPage;
 import util.page.prometheus.MainGraphPage;
 import util.page.prometheus.PrometheusAlertsPage;
 import util.page.prometheus.PrometheusRulesPage;
+import util.page.prometheus.PrometheusTargetsPage;
 
 
 public class PrometheusITest {
@@ -81,6 +82,18 @@ public class PrometheusITest {
 		TimeUnit.SECONDS.sleep(2);
 		
 		PrometheusAlertsPage page2 =page.getAlerts();
+		TimeUnit.SECONDS.sleep(2);
+		
+		page2.checkPage();
+	}
+	
+	
+	@Test
+	public void testTargetPage() throws InterruptedException {
+		MainGraphPage page = new MainGraphPage(driver);
+		TimeUnit.SECONDS.sleep(2);
+		
+		PrometheusTargetsPage page2 =page.getTargetsPage();
 		TimeUnit.SECONDS.sleep(2);
 		
 		page2.checkPage();

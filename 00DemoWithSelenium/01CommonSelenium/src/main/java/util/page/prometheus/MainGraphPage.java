@@ -22,6 +22,9 @@ public class MainGraphPage  extends Page {
 	
 	@FindBy(how=How.LINK_TEXT, using="Alerts")
 	private WebElement alertsLink;
+
+	@FindBy(how=How.LINK_TEXT, using="Targets")
+	private WebElement targetsLink;
 	
 
 	public MainGraphPage(WebDriver driver) {
@@ -41,6 +44,13 @@ public class MainGraphPage  extends Page {
 		statusLink.click();
 		configurationLink.click();
 		return new ConfigPage(driver);
+	}
+	
+	public PrometheusTargetsPage getTargetsPage() {
+		
+		statusLink.click();
+		targetsLink.click();
+		return new PrometheusTargetsPage(driver);
 	}
 	
 	public PrometheusRulesPage getRulesPage() {
