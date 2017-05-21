@@ -9,9 +9,8 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import util.page.prometheus.MainGraphPage;
 import util.page.springapplication.SpringApplicationMainPage;
-import util.page.springapplication.SpringApplicationMetricsPage;
 
-public class Example01 {
+public class Example02 {
 	
 	private static WebDriver driver;
 	
@@ -36,16 +35,13 @@ public class Example01 {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Start demo spring boot application 01");
+		System.out.println("Start demo spring boot application 02");
 		driver = getWebDriver();
 		
 		//show spring boot main page
 		new SpringApplicationMainPage(driver);
 		sleep();		
 		
-		//show spring boot metric -> nothing
-		new SpringApplicationMetricsPage(driver);
-		sleep();
 		
 		//show prometheus page
 		MainGraphPage page = new MainGraphPage(driver);
@@ -58,9 +54,10 @@ public class Example01 {
 		page.getAlerts();
 		sleep();
 		
+		
 		//end page
 		driver.close();
-		System.out.println("End demo spring boot application 01");
+		System.out.println("End demo spring boot application 02");
 	}
 
 }
