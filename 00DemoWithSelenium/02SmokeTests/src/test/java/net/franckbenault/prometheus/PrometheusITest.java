@@ -13,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import util.page.prometheus.ConfigPage;
 import util.page.prometheus.MainGraphPage;
 import util.page.prometheus.PrometheusAlertsPage;
+import util.page.prometheus.PrometheusMetricsPage;
 import util.page.prometheus.PrometheusRulesPage;
 import util.page.prometheus.PrometheusTargetsPage;
 
@@ -97,6 +98,14 @@ public class PrometheusITest {
 		TimeUnit.SECONDS.sleep(2);
 		
 		page2.checkPage();
+	}
+	
+	@Test
+	public void testMetricsPage() throws InterruptedException {
+		PrometheusMetricsPage page = new PrometheusMetricsPage(driver);
+		TimeUnit.SECONDS.sleep(2);
+		
+		page.checkPage();
 	}
 
 }

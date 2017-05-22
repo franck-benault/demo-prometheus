@@ -10,7 +10,7 @@ public class PrometheusAlertsPage extends Page {
 
 	public PrometheusAlertsPage(WebDriver driver) {
 		super(driver);
-		// TODO Auto-generated constructor stub
+
 	}
 	
 	
