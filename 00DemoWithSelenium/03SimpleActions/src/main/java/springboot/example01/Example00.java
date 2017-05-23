@@ -36,7 +36,7 @@ public class Example00 {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Start demo spring boot application 01");
+		System.out.println("Start demo spring boot application 00");
 		driver = getWebDriver();
 		
 		//show spring boot main page
@@ -54,13 +54,15 @@ public class Example00 {
 		page.getAlerts();
 		sleep();
 		
-		//to complete add grafana page
+		//TODO add prometheus graph
+		
+		//TODO complete add grafana page
 		//login
 		//add datasource prometheus
 		
 		//end page
 		driver.close();
-		System.out.println("End demo spring boot application 01");
+		System.out.println("End demo spring boot application 00");
 	}
 
 }
