@@ -50,13 +50,13 @@ public class PrometheusITest {
 
 	@Test
 	public void testMainPage() {
-		MainGraphPage page = new MainGraphPage(driver);
+		MainGraphPage page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		page.checkPage();
 	}
 	
 	@Test
 	public void testConfigPage() throws InterruptedException {
-		MainGraphPage page = new MainGraphPage(driver);
+		MainGraphPage page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		TimeUnit.SECONDS.sleep(2);
 		
 		ConfigPage page2 =page.getConfigPage();
@@ -67,7 +67,7 @@ public class PrometheusITest {
 	
 	@Test
 	public void testRulesPage() throws InterruptedException {
-		MainGraphPage page = new MainGraphPage(driver);
+		MainGraphPage page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		TimeUnit.SECONDS.sleep(2);
 		
 		PrometheusRulesPage page2 =page.getRulesPage();
@@ -79,7 +79,7 @@ public class PrometheusITest {
 	
 	@Test
 	public void testAlertsPage() throws InterruptedException {
-		MainGraphPage page = new MainGraphPage(driver);
+		MainGraphPage page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		TimeUnit.SECONDS.sleep(2);
 		
 		PrometheusAlertsPage page2 =page.getAlerts();
@@ -91,7 +91,7 @@ public class PrometheusITest {
 	
 	@Test
 	public void testTargetPage() throws InterruptedException {
-		MainGraphPage page = new MainGraphPage(driver);
+		MainGraphPage page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		TimeUnit.SECONDS.sleep(2);
 		
 		PrometheusTargetsPage page2 =page.getTargetsPage();

@@ -44,12 +44,12 @@ public class Example02 {
 		
 		
 		//show prometheus page
-		MainGraphPage page = new MainGraphPage(driver);
+		MainGraphPage page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		sleep();
 		page.getTargetsPage();
 		sleep();
 		
-		page = new MainGraphPage(driver);
+		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		sleep();
 		page.getAlerts();
 		sleep();

@@ -38,23 +38,33 @@ public class Example00 {
 	public static void main(String[] args) {
 		System.out.println("Start demo spring boot application 00");
 		driver = getWebDriver();
+		MainGraphPage page;
 		
 		//show spring boot main page
 		new SpringApplicationMainPage(driver);
 		sleep();		
 		
 		//show prometheus page
-		MainGraphPage page = new MainGraphPage(driver);
+		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		sleep();
 		page.getTargetsPage();
 		sleep();
 		
-		page = new MainGraphPage(driver);
+		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		sleep();
 		page.getAlerts();
 		sleep();
 		
-		//TODO add prometheus graph
+		//Add prometheus graph  and console
+		page = new MainGraphPage(driver, "http://localhost:9090/graph");
+		page = page.fillAndDrawGraph("up");
+		sleep();
+		
+		
+		//add prometheus console info
+		page = new MainGraphPage(driver, "http://localhost:9090/graph");
+		page.fillGraphConsole("prometheus_build_info[40s]");
+		sleep();
 		
 		//TODO complete add grafana page
 		//login
