@@ -1,5 +1,7 @@
 package util.page.grafana;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,7 +32,7 @@ public class GrafanaMainPage extends Page {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public GrafanaHomeDashboard login() {
+	public GrafanaHomeDashboard login()  {
 		this.username.clear();
 		this.username.sendKeys("admin");
 		
@@ -39,6 +41,14 @@ public class GrafanaMainPage extends Page {
 		
 		loginButton.click();
 		
+		try {
+			TimeUnit.SECONDS.sleep(5);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(driver.getPageSource());
+		System.out.println("-------------------");
 		return new GrafanaHomeDashboard(driver);
 	}
 

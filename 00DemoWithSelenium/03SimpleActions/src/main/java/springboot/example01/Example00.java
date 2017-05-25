@@ -7,9 +7,13 @@ import org.openqa.selenium.Proxy.ProxyType;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
+
+import util.page.grafana.GrafanaAddDataSource;
+import util.page.grafana.GrafanaHomeDashboard;
+import util.page.grafana.GrafanaMainPage;
 import util.page.prometheus.MainGraphPage;
 import util.page.springapplication.SpringApplicationMainPage;
-import util.page.springapplication.SpringApplicationMetricsPage;
+
 
 public class Example00 {
 	
@@ -20,9 +24,20 @@ public class Example00 {
 				"webdriver.gecko.driver",
 				"C:\\Users\\fr17649\\Desktop\\presentations\\Selenium-2016-11-29\\driver\\geckodriver-v0.16.1-win64\\geckodriver.exe");
 
+		
+		//DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+		//FirefoxOptions options = new FirefoxOptions();
+		
+		//capabilities.setCapability("marionette", true);
+		//capabilities.setCapability("moz:firefoxOptions", options);
+		
 		FirefoxProfile ff = new FirefoxProfile();
 		ff.setPreference("network.proxy.type", ProxyType.AUTODETECT.ordinal());
+		
+		
+		//driver = new FirefoxDriver(capabilities);
 		driver = new FirefoxDriver(ff);
+
 		
 		return driver;
 	}
@@ -58,21 +73,33 @@ public class Example00 {
 		//Add prometheus graph  and console
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		page = page.fillAndDrawGraph("up");
-		sleep();
-		
-		
+		sleep();		
 		//add prometheus console info
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		page.fillGraphConsole("prometheus_build_info[40s]");
 		sleep();
 		
 		//TODO complete add grafana page
-		//login
-		//add datasource prometheus
+		GrafanaMainPage grafanaMainPage = new GrafanaMainPage(driver);
+		sleep();
+		GrafanaHomeDashboard grafanaHomeDashboard = grafanaMainPage.login();
+		sleep();
+		GrafanaAddDataSource grafanaAddDataSource = grafanaHomeDashboard.addDataSource();
+		sleep();		
+		grafanaAddDataSource = grafanaAddDataSource.fillDataSourcePrometheus();
+		sleep();
+		grafanaAddDataSource = grafanaAddDataSource.getDashboardsTab();
+		sleep();
+		grafanaAddDataSource = grafanaAddDataSource.getDashboardInput();
+		sleep();
+		grafanaAddDataSource.getPrometheusStats();
+		sleep();
 		
 		//end page
 		driver.close();
 		System.out.println("End demo spring boot application 00");
 	}
+	
+
 
 }

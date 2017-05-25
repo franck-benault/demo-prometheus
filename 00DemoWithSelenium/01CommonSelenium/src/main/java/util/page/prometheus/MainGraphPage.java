@@ -1,7 +1,6 @@
 package util.page.prometheus;
 
 
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,7 +35,6 @@ public class MainGraphPage  extends Page {
 	private WebElement submit;
 	
 	@FindBy(how=How.XPATH, using="//a[@href='#graph0']")
-	//href="#graph0"
 	private WebElement graph;
 	
 	
