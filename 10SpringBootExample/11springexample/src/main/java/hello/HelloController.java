@@ -17,7 +17,7 @@ public class HelloController {
     	
     	Random rn = new Random();
     	int answer = rn.nextInt(100) + 1;
-    	if(answer>98) {
+    	if(answer>97) {
     		logger.error("main page http 404");
     		throw new ResourceNotFoundException();
     	}
