@@ -79,7 +79,7 @@ public class Example00 {
 		page.fillGraphConsole("prometheus_build_info[40s]");
 		sleep();
 		
-		//TODO complete add grafana page
+		//Add grafana page and adding datasource
 		GrafanaMainPage grafanaMainPage = new GrafanaMainPage(driver);
 		sleep();
 		GrafanaHomeDashboard grafanaHomeDashboard = grafanaMainPage.login();
