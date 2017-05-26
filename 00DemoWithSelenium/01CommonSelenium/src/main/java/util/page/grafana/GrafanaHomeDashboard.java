@@ -29,7 +29,7 @@ public class GrafanaHomeDashboard extends Page {
 	public void checkPage() {
 		System.out.println(driver.getPageSource());
 		assertTrue(driver.getPageSource().contains("Home"));
-		assertEquals(driver.getTitle(),"Grafana");
+		assertEquals(driver.getTitle(),"Grafana - Home");
 	}
 
 	public GrafanaAddDataSource addDataSource() {
