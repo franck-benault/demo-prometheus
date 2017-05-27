@@ -22,13 +22,13 @@ public class GrafanaMainPage extends Page {
 
 	
 	@FindBy(how=How.XPATH, using="(//button[@type='submit'])[1]")
-	WebElement loginButton;
+	private WebElement loginButton;
 
 	public GrafanaMainPage(WebDriver driver) {
 		super(driver);
 
 		driver.get("http://localhost:3000/login");
-		System.out.println(driver.getPageSource());
+		//System.out.println(driver.getPageSource());
 		PageFactory.initElements(driver, this);
 	}
 	
