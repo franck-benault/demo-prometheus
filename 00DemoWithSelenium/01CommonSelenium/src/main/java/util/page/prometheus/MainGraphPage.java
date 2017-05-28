@@ -37,7 +37,8 @@ public class MainGraphPage  extends Page {
 	@FindBy(how=How.XPATH, using="//a[@href='#graph0']")
 	private WebElement graph;
 	
-	
+	@FindBy(how=How.XPATH, using="//button[@title='Shrink the time range.']")
+	private WebElement graphMinus;
 
 	public MainGraphPage(WebDriver driver, String url) {
 		super(driver);
@@ -93,6 +94,8 @@ public class MainGraphPage  extends Page {
 		
 		
 		graph.click();
+		graphMinus.click();
+		graphMinus.click();
 		
 		//submit.submit();
 		//return  new MainGraphPage(driver);
