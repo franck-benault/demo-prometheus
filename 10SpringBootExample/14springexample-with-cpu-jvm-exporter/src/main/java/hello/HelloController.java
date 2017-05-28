@@ -15,7 +15,6 @@ public class HelloController {
 
     @RequestMapping("/")
     public String index() {
-    	logger.info("main page");
     	
     	Random rn = new Random();
     	int answer = rn.nextInt(100) + 1;
@@ -28,6 +27,7 @@ public class HelloController {
     	for(int i=0; i<200000; i++)
     		list.add("eeeeeeeeeeeeeeeeeee"+i);
     	
+    	logger.info("main page OK");
         return "Greetings from Spring Boot!";
     }
 

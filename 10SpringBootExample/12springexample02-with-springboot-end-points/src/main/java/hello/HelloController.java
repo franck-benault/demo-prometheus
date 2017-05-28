@@ -13,7 +13,6 @@ public class HelloController {
 
     @RequestMapping("/")
     public String index() {
-    	logger.info("main page");
     	
     	Random rn = new Random();
     	int answer = rn.nextInt(100) + 1;
@@ -22,6 +21,7 @@ public class HelloController {
     		throw new ResourceNotFoundException();
     	}
     	
+    	logger.info("main page OK");
         return "Greetings from Spring Boot!";
     }
 
