@@ -53,12 +53,13 @@ public class Example05 {
 		page.getTargetsPage();
 		sleep();
 		
+		//Pometheus alert page
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		sleep();
 		page.getAlerts();
 		sleep();
 		
-		//Add prometheus graph  and console
+		//Pometheus graph and console
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		page = page.fillAndDrawGraph("up");
 		sleep();
@@ -69,6 +70,10 @@ public class Example05 {
 		
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		page = page.fillAndDrawGraph("grok_log_lines_total{class=\"hello.HelloController\",level=\"ERROR\"}");
+		sleep();
+		
+		page = new MainGraphPage(driver, "http://localhost:9090/graph");
+		page = page.fillAndDrawGraph("100*sum(60*rate(grok_log_lines_total{class=\"hello.HelloController\", level=\"ERROR\"}[1m])) / sum(60*rate(grok_log_lines_total{class=\"hello.HelloController\"}[1m]))");
 		sleep();
 		
 		//end page
