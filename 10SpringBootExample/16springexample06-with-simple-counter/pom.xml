@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.franckbenault.prometheus</groupId>
+	<artifactId>16springexample06</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.3.RELEASE</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- They include: errors, environment, health, beans, info, metrics, trace, 
+			configprops, and dump. -->
+		<!-- dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency-->
+		<!-- dependency>
+			<groupId>com.moelholm</groupId>
+			<artifactId>prometheus-spring-boot-starter</artifactId>
+			<version>1.0.1</version>
+		</dependency-->
+		<dependency>
+			<groupId>io.prometheus</groupId>
+			<artifactId>simpleclient</artifactId>
+			<version>${prometheus.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.prometheus</groupId>
+			<artifactId>simpleclient_hotspot</artifactId>
+			<version>${prometheus.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.prometheus</groupId>
+			<artifactId>simpleclient_servlet</artifactId>
+			<version>${prometheus.version}</version>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<prometheus.version>0.0.21</prometheus.version>
+	</properties>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
