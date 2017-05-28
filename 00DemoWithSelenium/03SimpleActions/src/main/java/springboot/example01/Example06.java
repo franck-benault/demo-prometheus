@@ -74,15 +74,11 @@ public class Example06 {
 		sleep();
 		
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
-		page = page.fillAndDrawGraph("grok_log_lines_total");
+		page = page.fillAndDrawGraph("http_requests_total");
 		sleep();
 		
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
-		page = page.fillAndDrawGraph("grok_log_lines_total{class=\"hello.HelloController\",level=\"ERROR\"}");
-		sleep();
-		
-		page = new MainGraphPage(driver, "http://localhost:9090/graph");
-		page = page.fillAndDrawGraph("100*sum(60*rate(grok_log_lines_total{class=\"hello.HelloController\", level=\"ERROR\", method=\"index\"}[1m])) / sum(60*rate(grok_log_lines_total{class=\"hello.HelloController\", method=\"index\"}[1m]))");
+		page = page.fillAndDrawGraph("100*sum(60*rate(http_requests_total{ status=\"ERROR\" , method=\"index\"}[1m])) / sum(60*rate(http_requests_total{method=\"index\"}[1m]))");
 		sleep();
 		
 		//end page

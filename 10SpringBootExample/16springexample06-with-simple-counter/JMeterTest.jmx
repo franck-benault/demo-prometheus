@@ -84,7 +84,7 @@
         </HTTPSamplerProxy>
         <hashTree/>
         <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Wait5s" enabled="true">
-          <stringProp name="ConstantTimer.delay">5000</stringProp>
+          <stringProp name="ConstantTimer.delay">1667</stringProp>
         </ConstantTimer>
         <hashTree/>
       </hashTree>
