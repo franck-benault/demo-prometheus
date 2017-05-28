@@ -39,14 +39,15 @@ public class HelloController {
     }
     
     @RequestMapping("/endpointA")
-    public void handlerA() throws InterruptedException {
+    public String handlerA() throws InterruptedException {
     	Metrics.requestTotal.labels("endpointA","OK").inc();
-
+    	return "Greetings from Spring Boot! page A";
     }
 
     @RequestMapping("/endpointB")
-    public void handlerB() throws InterruptedException {
+    public String handlerB() throws InterruptedException {
     	Metrics.requestTotal.labels("endpointB","OK").inc();
+       	return "Greetings from Spring Boot! page B";
     }
     
     @RequestMapping(value="/metrics" ,produces={"text/plain"})

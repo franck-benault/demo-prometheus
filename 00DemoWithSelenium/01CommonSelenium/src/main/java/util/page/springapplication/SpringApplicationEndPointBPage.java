@@ -5,13 +5,12 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 
 import util.page.Page;
-import static org.junit.Assert.assertTrue;
 
-public class SpringApplicationMainPage extends Page {
+public class SpringApplicationEndPointBPage extends Page {
 	
-	private static final String url = "http://localhost:8080/";
+	private static final String url = "http://localhost:8080/endpointB";
 
-	public SpringApplicationMainPage(WebDriver driver) {
+	public SpringApplicationEndPointBPage(WebDriver driver) {
 		super(driver);
 		driver.get(url);
 		
@@ -28,7 +27,5 @@ public class SpringApplicationMainPage extends Page {
 		}
 	}
 
-	public void checkPage() {
-		assertTrue(driver.getPageSource().contains("Greetings from Spring Boot!"));
-	}
+
 }
