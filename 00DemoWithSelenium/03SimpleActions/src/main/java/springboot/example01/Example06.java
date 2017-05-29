@@ -70,6 +70,7 @@ public class Example06 {
 		
 		//Pometheus graph and console
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
+		sleep();
 		page = page.fillAndDrawGraph("up");
 		sleep();
 		
@@ -80,9 +81,12 @@ public class Example06 {
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		page = page.fillAndDrawGraph("100*sum(60*rate(http_requests_total{ status=\"ERROR\" , method=\"index\"}[1m])) / sum(60*rate(http_requests_total{method=\"index\"}[1m]))");
 		sleep();
+		//page.addGraph("up");
+		page.addGraph("100*sum(60*rate(grok_log_lines_total{class=\"hello.HelloController\", level=\"ERROR\", method=\"index\"}[1m])) / sum(60*rate(grok_log_lines_total{class=\"hello.HelloController\", method=\"index\"}[1m]))");
+		sleep();
 		
 		//end page
-		driver.close();
+		//driver.close();
 		System.out.println("End demo spring boot application 06");
 	}
 
