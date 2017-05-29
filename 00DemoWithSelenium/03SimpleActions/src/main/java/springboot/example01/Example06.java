@@ -79,6 +79,7 @@ public class Example06 {
 		sleep();
 		
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
+		sleep();
 		page = page.fillAndDrawGraph("100*sum(60*rate(http_requests_total{ status=\"ERROR\" , method=\"index\"}[1m])) / sum(60*rate(http_requests_total{method=\"index\"}[1m]))");
 		sleep();
 		//page.addGraph("up");
@@ -86,7 +87,7 @@ public class Example06 {
 		sleep();
 		
 		//end page
-		//driver.close();
+		driver.close();
 		System.out.println("End demo spring boot application 06");
 	}
 
