@@ -12,17 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
+	
+	
+	private static final int HTTP_OK_RATE = 97;
 
 	private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(HelloController.class);
 
 	
+	private int randomInt(int maxValue) {
+    	Random rn = new Random();
+    	return rn.nextInt(maxValue) + 1;
+	}
+	
     @RequestMapping("/")
     public String index() {
 
-    	
-    	Random rn = new Random();
-    	int answer = rn.nextInt(100) + 1;
-    	if(answer>97) {
+    	int answer = randomInt(100);
+    	if(answer>HTTP_OK_RATE) {
         	Metrics.requestTotal.labels("index","ERROR").inc();
     		logger.error("main page http 404");
     		throw new ResourceNotFoundException();
@@ -40,7 +46,23 @@ public class HelloController {
     
     @RequestMapping("/endpointA")
     public String handlerA() throws InterruptedException {
-    	Metrics.requestTotal.labels("endpointA","OK").inc();
+  
+    	int answer = randomInt(100);
+    	if(answer>50)
+    		Metrics.nbTemporaryFile.labels("handlerA").inc(randomInt(5));
+    	else {
+    		int prevValue = (int)Metrics.nbTemporaryFile.labels("handlerA").get();
+    		if(prevValue>0) {
+    			if(prevValue<5) 
+    				Metrics.nbTemporaryFile.labels("handlerA").dec(randomInt(prevValue));
+        		else
+        			Metrics.nbTemporaryFile.labels("handlerA").dec(randomInt(5));
+        		
+    		}
+    	}
+
+    	
+      	Metrics.requestTotal.labels("endpointA","OK").inc();
     	return "Greetings from Spring Boot! page A";
     }
 
