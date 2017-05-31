@@ -2,6 +2,7 @@ package hello;
 
 import io.prometheus.client.Counter;
 import io.prometheus.client.Gauge;
+import io.prometheus.client.Summary;
 
 public class Metrics {
 
@@ -14,4 +15,9 @@ public class Metrics {
 			.name("nb_temporary_files")
 			.labelNames("method")
 			.help("Number of temporary files open").register();
+	
+	public static final Summary responseTime = Summary.build()
+			.name("response_time_summary")
+			.labelNames("method")
+			.help("request response time summary").register();
 }

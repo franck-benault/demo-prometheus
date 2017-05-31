@@ -1,6 +1,7 @@
 package hello;
 
 import io.prometheus.client.CollectorRegistry;
+import io.prometheus.client.Summary;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -68,6 +69,11 @@ public class HelloController {
 
     @RequestMapping("/endpointB")
     public String handlerB() throws InterruptedException {
+        Summary.Timer timer = Metrics.responseTime.startTimer();
+        // do some work ...
+        int answer = randomInt(100);
+        
+        timer.observeDuration();
     	Metrics.requestTotal.labels("endpointB","OK").inc();
        	return "Greetings from Spring Boot! page B";
     }
