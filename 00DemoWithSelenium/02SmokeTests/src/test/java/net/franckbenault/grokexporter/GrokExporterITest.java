@@ -11,12 +11,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import util.page.grokexporter.GrokExporterMetricsPage;
-import util.page.prometheus.ConfigPage;
-import util.page.prometheus.MainGraphPage;
-import util.page.prometheus.PrometheusAlertsPage;
-import util.page.prometheus.PrometheusMetricsPage;
-import util.page.prometheus.PrometheusRulesPage;
-import util.page.prometheus.PrometheusTargetsPage;
 
 
 public class GrokExporterITest {

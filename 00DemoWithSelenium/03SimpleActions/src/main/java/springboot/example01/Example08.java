@@ -13,7 +13,7 @@ import util.page.springapplication.SpringApplicationEndPointBPage;
 import util.page.springapplication.SpringApplicationMainPage;
 import util.page.springapplication.SpringApplicationMetricsPage;
 
-public class Example07 {
+public class Example08 {
 	
 	private static WebDriver driver;
 	
@@ -38,7 +38,7 @@ public class Example07 {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Start demo spring boot application 07");
+		System.out.println("Start demo spring boot application 08");
 		driver = getWebDriver();
 		
 		//show spring boot main page and endpointA endpointB
@@ -75,12 +75,12 @@ public class Example07 {
 		sleep();
 		
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
-		page = page.fillAndDrawGraph("nb_temporary_files");
+		page = page.fillAndDrawGraph("rate(response_time_summary_sum{method=\"endpointB\"}[1m])/rate(response_time_summary_count{method=\"endpointB\"}[1m])*1000");
 		sleep();
 		
 		//end page
 		driver.close();
-		System.out.println("End demo spring boot application 07");
+		System.out.println("End demo spring boot application 08");
 	}
 
 }
