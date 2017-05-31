@@ -1,5 +1,6 @@
 package hello;
 
+import hello.thread.MyThread;
 import io.prometheus.client.CollectorRegistry;
 
 import java.io.StringWriter;
@@ -17,17 +18,11 @@ public class HelloController {
 	private static final int HTTP_OK_RATE = 97;
 
 	private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(HelloController.class);
-
-	
-	private int randomInt(int maxValue) {
-    	Random rn = new Random();
-    	return rn.nextInt(maxValue) + 1;
-	}
 	
     @RequestMapping("/")
     public String index() {
 
-    	int answer = randomInt(100);
+    	int answer = Util.randomInt(100);
     	if(answer>HTTP_OK_RATE) {
         	Metrics.requestTotal.labels("index","ERROR").inc();
     		logger.error("main page http 404");
@@ -47,6 +42,7 @@ public class HelloController {
     @RequestMapping("/endpointA")
     public String handlerA() throws InterruptedException {
   
+    	/*
     	int answer = randomInt(100);
     	if(answer>50)
     		Metrics.nbTemporaryFile.labels("handlerA").inc(randomInt(5));
@@ -60,7 +56,9 @@ public class HelloController {
         		
     		}
     	}
-
+    	 */
+    	MyThread t = new MyThread();
+    	t.start();
     	
       	Metrics.requestTotal.labels("endpointA","OK").inc();
     	return "Greetings from Spring Boot! page A";
