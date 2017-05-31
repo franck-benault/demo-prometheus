@@ -6,7 +6,6 @@ import io.prometheus.client.CollectorRegistry;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,21 +41,7 @@ public class HelloController {
     @RequestMapping("/endpointA")
     public String handlerA() throws InterruptedException {
   
-    	/*
-    	int answer = randomInt(100);
-    	if(answer>50)
-    		Metrics.nbTemporaryFile.labels("handlerA").inc(randomInt(5));
-    	else {
-    		int prevValue = (int)Metrics.nbTemporaryFile.labels("handlerA").get();
-    		if(prevValue>0) {
-    			if(prevValue<5) 
-    				Metrics.nbTemporaryFile.labels("handlerA").dec(randomInt(prevValue));
-        		else
-        			Metrics.nbTemporaryFile.labels("handlerA").dec(randomInt(5));
-        		
-    		}
-    	}
-    	 */
+
     	MyThread t = new MyThread();
     	t.start();
     	

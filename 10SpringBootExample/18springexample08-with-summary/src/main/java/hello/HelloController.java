@@ -1,12 +1,13 @@
 package hello;
 
+import hello.thread.MyThread;
 import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.Summary;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,17 +19,11 @@ public class HelloController {
 	private static final int HTTP_OK_RATE = 97;
 
 	private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(HelloController.class);
-
-	
-	private int randomInt(int maxValue) {
-    	Random rn = new Random();
-    	return rn.nextInt(maxValue) + 1;
-	}
 	
     @RequestMapping("/")
     public String index() {
 
-    	int answer = randomInt(100);
+    	int answer = Util.randomInt(100);
     	if(answer>HTTP_OK_RATE) {
         	Metrics.requestTotal.labels("index","ERROR").inc();
     		logger.error("main page http 404");
@@ -47,21 +42,9 @@ public class HelloController {
     
     @RequestMapping("/endpointA")
     public String handlerA() throws InterruptedException {
-  
-    	int answer = randomInt(100);
-    	if(answer>50)
-    		Metrics.nbTemporaryFile.labels("handlerA").inc(randomInt(5));
-    	else {
-    		int prevValue = (int)Metrics.nbTemporaryFile.labels("handlerA").get();
-    		if(prevValue>0) {
-    			if(prevValue<5) 
-    				Metrics.nbTemporaryFile.labels("handlerA").dec(randomInt(prevValue));
-        		else
-        			Metrics.nbTemporaryFile.labels("handlerA").dec(randomInt(5));
-        		
-    		}
-    	}
 
+    	MyThread t = new MyThread();
+    	t.start();
     	
       	Metrics.requestTotal.labels("endpointA","OK").inc();
     	return "Greetings from Spring Boot! page A";
@@ -69,9 +52,15 @@ public class HelloController {
 
     @RequestMapping("/endpointB")
     public String handlerB() throws InterruptedException {
-        Summary.Timer timer = Metrics.responseTime.startTimer();
-        // do some work ...
-        int answer = randomInt(100);
+    	
+        Summary.Timer timer = Metrics.responseTime.labels("endpointB").startTimer();
+
+        //some works
+		try {
+			TimeUnit.MILLISECONDS.sleep(Util.randomInt(10));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
         
         timer.observeDuration();
     	Metrics.requestTotal.labels("endpointB","OK").inc();
