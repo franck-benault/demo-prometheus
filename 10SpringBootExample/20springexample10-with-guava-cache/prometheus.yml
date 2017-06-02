@@ -17,6 +17,7 @@ rule_files:
   - "file.rules"
   - "responsetime.rules"
   - "responsetime2.rules"
+  - "cache.rules"
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
