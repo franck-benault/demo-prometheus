@@ -4,6 +4,7 @@ import io.prometheus.client.Counter;
 import io.prometheus.client.Gauge;
 import io.prometheus.client.Histogram;
 import io.prometheus.client.Summary;
+import io.prometheus.client.guava.cache.CacheMetricsCollector;
 
 public class Metrics {
 
@@ -26,4 +27,7 @@ public class Metrics {
 			.name("response_time_histogram")
 			.labelNames("method")
 			.help("request response time histogram").register();
+	
+	public static final CacheMetricsCollector cacheMetrics = 
+			new CacheMetricsCollector().register();
 }

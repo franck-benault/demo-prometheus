@@ -1,5 +1,6 @@
 package hello;
 
+import hello.cache.MyCache;
 import hello.thread.MyThread;
 import hello.util.Util;
 import io.prometheus.client.CollectorRegistry;
@@ -9,18 +10,17 @@ import io.prometheus.client.Summary;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
 
 @RestController
 public class HelloController {
+	
+    @Autowired
+    private MyCache myCache;
 	
 	
 	private static final int HTTP_OK_RATE = 97;
@@ -88,25 +88,10 @@ public class HelloController {
     
     @RequestMapping("/endpointD")
     public String handlerD() throws InterruptedException {
-    	
-    	LoadingCache<Integer, String> values = CacheBuilder.newBuilder()
-    		       .maximumSize(100)
-    		       .expireAfterWrite(10, TimeUnit.MINUTES)
-    		       .build(
-    		           new CacheLoader<Integer, String>() {
-    		             public String load(Integer key)  {
-    		               Util.sleepInMilliSeconde(2000);
-    		               return "A"+key;
-    		             }
-    		           });
 
-        //some works
-    	String res = null;
-		try {
-			res = values.get(Util.randomInt(110));
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
+    	
+
+    	String res = myCache.getValue();
 		
 
     	Metrics.requestTotal.labels("endpointD","OK").inc();
