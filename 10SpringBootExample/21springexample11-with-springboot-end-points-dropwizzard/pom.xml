@@ -28,10 +28,35 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-annotation</artifactId>
+            <version>${dropwizzard.version}</version>
+        </dependency>
+        <dependency>
+        	<groupId>com.ryantenney.metrics</groupId>
+        	<artifactId>metrics-spring</artifactId>
+        	<version>3.1.3</version>
+        	<exclusions>
+        		<exclusion>
+        			<groupId>com.codahale.metrics</groupId>
+        		</exclusion>
+        		<exclusion>
+        			<groupId>org.springframework</groupId>
+        		</exclusion>
+        	</exclusions>
+        </dependency>
     </dependencies>
 
     <properties>
         <java.version>1.8</java.version>
+        <dropwizzard.version>3.2.2</dropwizzard.version>
     </properties>
 
 
