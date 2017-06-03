@@ -1,5 +1,7 @@
 package hello;
 
+import hello.util.Util;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -23,9 +25,7 @@ public class HelloController {
     		throw new ResourceNotFoundException();
     	}
     	
-    	List<String> list  = new ArrayList<String>();
-    	for(int i=0; i<200000; i++)
-    		list.add("eeeeeeeeeeeeeeeeeee"+i);
+    	Util.consumeMemory();
     	
     	logger.info("main page OK");
         return "Greetings from Spring Boot!";
