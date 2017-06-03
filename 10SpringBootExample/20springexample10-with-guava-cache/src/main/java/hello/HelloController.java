@@ -8,8 +8,6 @@ import io.prometheus.client.Histogram;
 import io.prometheus.client.Summary;
 
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,9 +37,7 @@ public class HelloController {
     	}
     	
     	//memory usage...
-    	List<String> list  = new ArrayList<String>();
-    	for(int i=0; i<200000; i++)
-    		list.add("eeeeeeeeeeeeeeeeeee"+i);
+    	Util.consumeMemory();
     	
     	logger.info("main page OK");
        	Metrics.requestTotal.labels("index","OK").inc();

@@ -1,9 +1,9 @@
 package hello.thread;
 
-import java.util.concurrent.TimeUnit;
-
 import hello.Metrics;
-import hello.Util;
+import hello.util.Util;
+
+import java.util.concurrent.TimeUnit;
 
 public class MyThread extends Thread {
 	

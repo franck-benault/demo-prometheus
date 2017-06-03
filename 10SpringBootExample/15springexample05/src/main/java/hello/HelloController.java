@@ -1,7 +1,7 @@
 package hello;
 
-import java.util.ArrayList;
-import java.util.List;
+import hello.util.Util;
+
 import java.util.Random;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -24,9 +24,7 @@ public class HelloController {
     	}
     	
     	//memory usage...
-    	List<String> list  = new ArrayList<String>();
-    	for(int i=0; i<200000; i++)
-    		list.add("eeeeeeeeeeeeeeeeeee"+i);
+    	Util.consumeMemory();
     	
     	logger.info("main page OK");
         return "Greetings from Spring Boot!";

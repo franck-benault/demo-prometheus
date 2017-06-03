@@ -1,10 +1,9 @@
 package hello;
 
+import hello.util.Util;
 import io.prometheus.client.CollectorRegistry;
 
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,9 +28,7 @@ public class HelloController {
     	}
     	
     	//memory usage...
-    	List<String> list  = new ArrayList<String>();
-    	for(int i=0; i<200000; i++)
-    		list.add("eeeeeeeeeeeeeeeeeee"+i);
+    	Util.consumeMemory();
     	
     	logger.info("main page OK");
        	Metrics.requestTotal.labels("index","OK").inc();
