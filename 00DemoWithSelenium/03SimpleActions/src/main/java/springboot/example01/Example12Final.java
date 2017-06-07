@@ -49,24 +49,18 @@ public class Example12Final {
 		driver = getWebDriver();
 		
 		//TITLE
-		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/01a-Prometheus.jpg");
-		sleep(3);
-		
-		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/01b-prometheus.jpg");
-		sleep(5);
+		//driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/01a-Prometheus.jpg");
+		//sleep(1);
 		driver.get("http://localhost:8080/01Monitoring.html");
-		sleep(10);
+		sleep(15);
 		
 		//ARCHITECTURE
-		//TODO change this image (archi)
 		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/01c-architecture.png");
-		sleep(15);
+		sleep(25);
 		
 		//MY SPRING BOOT APPLICATION
-		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/spring-boot-project-logo.png");
-		sleep(5);
 		driver.get("http://localhost:8080/02SpringBoot.html");
-		sleep(15);
+		sleep(25);
 		new SpringApplicationMainPage(driver);
 		sleep(1);	
 		new SpringApplicationEndPointAPage(driver);
@@ -78,14 +72,12 @@ public class Example12Final {
 		new SpringApplicationEndPointDPage(driver);
 		sleep(1);
 		
-		//JMeter
-		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/01cbis-apachejmeter_0.jpg");
-		sleep(5);
+		//JMETER
 		driver.get("http://localhost:8080/03JMeter.html");
-		sleep(15);
+		sleep(25);
 		
 		//PROMETHEUS
-		driver.get("http://localhost:8080/04Promethes.html");
+		driver.get("http://localhost:8080/04Prometheus.html");
 		sleep(15);
 		MainGraphPage page =new MainGraphPage(driver, "http://localhost:9090/graph");
 		sleep(5);
@@ -105,6 +97,7 @@ public class Example12Final {
 		
 		//GRAFANA
 		driver.get("http://localhost:8080/06Grafana.html");
+		sleep(25);
 		GrafanaMainPage grafanaMainPage = new GrafanaMainPage(driver);
 		sleep(3);
 		GrafanaHomeDashboard grafanaHomeDashboard = grafanaMainPage.login();
@@ -121,34 +114,33 @@ public class Example12Final {
 		sleep(10);
 		
 		//BLACK BOX MONITORING
-		//TODO static page black box and white box
-		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/01d-monitoring-blackbox.jpg");
-		sleep(5);
 		driver.get("http://localhost:8080/07BlackBoxMonitoring.html");
+		sleep(25);
 		
-		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/02exporter.png");
+		//LOGGING
+		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/01c-architecture2.png");
 		sleep(15);
-		
-		//logging
 		driver.get("file:///D:/workspace/demo-prometheus/90Docker/applispring/logs/mylogfiless.log");
 		sleep(15);
 		
 		new GrokExporterMetricsPage(driver);
-		sleep(15);		
-		new GrokExporterMetricsPage(driver);
-		sleep(15);		
+		sleep(15);			
 		
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
+		page = page.fillAndDrawGraph("grok_log_lines_total{class=\"hello.HelloController\"}");
+		sleep(15);
 		page = page.fillAndDrawGraph("100*sum(60*rate(grok_log_lines_total{class=\"hello.HelloController\", level=\"ERROR\", method=\"index\"}[1m])) / sum(60*rate(grok_log_lines_total{class=\"hello.HelloController\", method=\"index\"}[1m]))");
 		sleep(15);
 				
 		//jvm
 		//TODO
 		
-		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/01f-whitebox-monitoring.jpg");
-		sleep(15);
+		//TODO create a page to check
+		driver.get("http://localhost:8080/08WhiteBoxMonitoring.html");
+		sleep(25);
 		
-		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/03Counter.jpg");
+		//TODO create a page to check
+		driver.get("http://localhost:8080/09MetricCounter.html");
 		sleep(15);
 		
 		//COUNTER
@@ -166,6 +158,7 @@ public class Example12Final {
 		sleep(15);
 
 		//GAUGE
+		//TODO create a page 
 		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/04Gauge.jpg");
 		sleep(15);
 		driver.get("http://localhost:8080/metricsGauge");
@@ -178,12 +171,15 @@ public class Example12Final {
 		
 		
 		//SUMMARY
+		//TODO create a page 
 		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/05Summary.jpg");
 		sleep(15);
 		
-		//TODO servlet metrics page
-		page = new MainGraphPage(driver, "http://localhost:9090/graph");
+		//TODO servlet metrics page to check
+		driver.get("http://localhost:8080/metricsSummary");
 		sleep(15);
+		driver.get("http://localhost:8080/metricsSummary");
+		sleep(5);
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		page = page.fillAndDrawGraph("response_time_summary_sum");
 		sleep(15);
@@ -198,17 +194,26 @@ public class Example12Final {
 		page = page.fillAndDrawGraph("rate(response_time_summary_sum{method=\"endpointB\"}[1m])/rate(response_time_summary_count{method=\"endpointB\"}[1m])*1000");
 		sleep(15);
 		
+		//HISTOGRAM
+		//TODO create a page 
 		driver.get("file:///D:/workspace/demo-prometheus/prometheus-images/06Histogram.png");
 		sleep(15);
-		//add example
+		driver.get("http://localhost:8080/metricsHistogram");
+		sleep(15);
+		driver.get("http://localhost:8080/metricsHistogram");
+		sleep(5);
+		
+		
+		//TODO add example
 		
 		//response_time_histogram_bucket
 		
 		//TODO Guava ?
 		
+		//TODO Question image
+		
 		//end page
 		driver.close();
 		System.out.println("End demo spring boot application 12");
 	}
-
 }
