@@ -84,10 +84,8 @@ public class Example10 {
 		
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		sleep();
-		page = page.fillAndDrawGraph("rate(guava_cache_hit_total[1m])/rate(guava_cache_requests_total[1m])*100");
-		sleep();
-		sleep();
-		page.addGraph("rate(guava_cache_miss_total[1m])/rate(guava_cache_requests_total[1m])*100 ");
+		page = page.fillAndDrawTwoGraphes("rate(guava_cache_hit_total[1m])/rate(guava_cache_requests_total[1m])*100",
+				"rate(guava_cache_miss_total[1m])/rate(guava_cache_requests_total[1m])*100 ");
 		sleep();
 		sleep();
 		

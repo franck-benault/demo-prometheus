@@ -83,10 +83,8 @@ public class Example09 {
 		sleep();
 		
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
-		page = page.fillAndDrawGraph("histogram_quantile(0.95, sum(rate(response_time_histogram_bucket[2m])) by (job, le)) * 1000");
-		sleep();
-		sleep();
-		page.addGraph("histogram_quantile(0.85, sum(rate(response_time_histogram_bucket[2m])) by (job, le)) * 1000");
+		page = page.fillAndDrawTwoGraphes("histogram_quantile(0.95, sum(rate(response_time_histogram_bucket[2m])) by (job, le)) * 1000",
+				"histogram_quantile(0.85, sum(rate(response_time_histogram_bucket[2m])) by (job, le)) * 1000");
 		sleep();
 		sleep();
 		

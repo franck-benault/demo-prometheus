@@ -64,6 +64,9 @@ public class Example04 {
 		sleep();
 		
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
+		//url http://localhost:9090/graph?g0.range_input=15m&g0.expr=jvm_memory_bytes_used%7Barea%3D%22heap%22%7D&g0.tab=0
+		//url http://localhost:9090/graph?g0.range_input=15m&g0.expr=jvm_memory_bytes_used%7Barea%3D%22heap%22%7D&g0.tab=0
+		//&g1.range_input=15m&g1.expr=jvm_memory_bytes_used%7Barea%3D%22heap%22%7D&g1.tab=0
 		page = page.fillAndDrawGraph("jvm_memory_bytes_used{area=\"heap\"}");
 		sleep();
 		

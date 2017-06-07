@@ -14,16 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 	
-	
-	private static final int HTTP_OK_RATE = 97;
-
 	private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(HelloController.class);
+	
+    private MyProperties myProperties = new MyProperties();
 	
     @RequestMapping("/")
     public String index() {
 
     	int answer = Util.randomInt(100);
-    	if(answer>HTTP_OK_RATE) {
+    	if(answer>myProperties.getIndex_ok_case()) {
         	Metrics.requestTotal.labels("index","ERROR").inc();
     		logger.error("main page http 404");
     		throw new ResourceNotFoundException();
@@ -40,7 +39,7 @@ public class HelloController {
     @RequestMapping("/endpointA")
     public String handlerA() throws InterruptedException {
 
-    	MyThread t = new MyThread();
+    	MyThread t = new MyThread(myProperties);
     	t.start();
     	
       	Metrics.requestTotal.labels("endpointA","OK").inc();

@@ -112,6 +112,18 @@ public class MainGraphPage  extends Page {
 	}
 	
 	public MainGraphPage fillAndDrawGraph(String request) {
+		
+		String url = "http://localhost:9090/graph?g0.range_input=15m&g0.expr="+request.replace("=", "%3D")+"&g0.tab=0";
+		this.driver.get(url);
+		MainGraphPage page =new MainGraphPage(driver);
+		return page;
+		
+				
+		//url http://localhost:9090/graph?g0.range_input=15m&g0.expr=jvm_memory_bytes_used%7Barea%3D%22heap%22%7D&g0.tab=0
+		//url http://localhost:9090/graph?g0.range_input=15m&g0.expr=jvm_memory_bytes_used%7Barea%3D%22heap%22%7D&g0.tab=0
+		//&g1.range_input=15m&g1.expr=jvm_memory_bytes_used%7Barea%3D%22heap%22%7D&g1.tab=0
+		
+		/*
 		this.expr0.clear();
 		this.expr0.sendKeys(request);
 		expr0.submit();
@@ -128,6 +140,14 @@ public class MainGraphPage  extends Page {
 		
 		//submit.submit();
 		//return  new MainGraphPage(driver);
+		MainGraphPage page =new MainGraphPage(driver);
+		return page;*/
+	}
+	
+	public MainGraphPage fillAndDrawTwoGraphes(String request, String request2) {
+		String url = "http://localhost:9090/graph?g0.range_input=15m&g0.expr="+request.replace("=", "%3D")+"&g0.tab=0";
+		url+="&g1.range_input=15m&g1.expr="+request2.replace("=", "%3D")+"&g1.tab=0";
+		this.driver.get(url);
 		MainGraphPage page =new MainGraphPage(driver);
 		return page;
 	}
@@ -164,4 +184,6 @@ public class MainGraphPage  extends Page {
 		MainGraphPage page =new MainGraphPage(driver);
 		return page;
 	}
+
+
 }

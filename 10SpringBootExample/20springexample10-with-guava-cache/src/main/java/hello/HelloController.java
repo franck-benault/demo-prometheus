@@ -19,18 +19,16 @@ public class HelloController {
 	
     @Autowired
     private MyCache myCache;
-	
-	
-	private static final int HTTP_OK_RATE = 97;
-	private static final int END_POINT_C_OK_RATE = 90;
 
 	private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(HelloController.class);
+	
+    private MyProperties myProperties = new MyProperties();
 	
     @RequestMapping("/")
     public String index() {
 
     	int answer = Util.randomInt(100);
-    	if(answer>HTTP_OK_RATE) {
+    	if(answer>myProperties.getIndex_ok_case()) {
         	Metrics.requestTotal.labels("index","ERROR").inc();
     		logger.error("main page http 404");
     		throw new ResourceNotFoundException();
@@ -47,7 +45,7 @@ public class HelloController {
     @RequestMapping("/endpointA")
     public String handlerA() throws InterruptedException {
 
-    	MyThread t = new MyThread();
+    	MyThread t = new MyThread(myProperties);
     	t.start();
     	
       	Metrics.requestTotal.labels("endpointA","OK").inc();
@@ -73,7 +71,7 @@ public class HelloController {
 
         //some works
        	int answer = Util.randomInt(100);
-   		if(answer>END_POINT_C_OK_RATE) {
+   		if(answer>myProperties.getEnd_point_c_ok_rate()) {
    			Util.sleepInMilliSeconde(Util.randomInt(500));
    		}
 		

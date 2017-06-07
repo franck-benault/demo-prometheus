@@ -8,13 +8,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+
 import com.ryantenney.metrics.spring.config.annotation.EnableMetrics;
 
 @SpringBootApplication
 @EnableMetrics(proxyTargetClass = true)
 public class Application {
 
-    public static void main(String[] args) {
+	
+	public static String[] myargs;
+	
+    public static void main(String[] args) {  	   	
+    	myargs = args;
         SpringApplication.run(Application.class, args);
     }
 

@@ -4,7 +4,6 @@ import hello.util.Util;
 import io.prometheus.client.CollectorRegistry;
 
 import java.io.StringWriter;
-import java.util.Random;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,14 +13,16 @@ public class HelloController {
 
 	private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(HelloController.class);
 
+    private MyProperties myProperties = new MyProperties();
+	
 	
     @RequestMapping("/")
     public String index() {
 
     	
-    	Random rn = new Random();
-    	int answer = rn.nextInt(100) + 1;
-    	if(answer>97) {
+    	int answer = Util.randomInt(100);
+    	
+    	if(answer>myProperties.getIndex_ok_case()) {
         	Metrics.requestTotal.labels("index","ERROR").inc();
     		logger.error("main page http 404");
     		throw new ResourceNotFoundException();
