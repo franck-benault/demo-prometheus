@@ -20,7 +20,7 @@ public class TextFormat2 {
 	     * for the output format specification. */
 	    while(mfs.hasMoreElements()) {
 	      Collector.MetricFamilySamples metricFamilySamples = mfs.nextElement();
-	      if(metricFamilySamples.name.equals(name)) {
+	      if(metricFamilySamples.name.contains(name)) {
 	      writer.write("# HELP ");
 	      writer.write(metricFamilySamples.name);
 	      writer.write(' ');

@@ -92,7 +92,7 @@ public class HelloController {
        	return "Greetings from Spring Boot! page D "+res;
     }
     
-    @RequestMapping(value="/metrics" ,produces={"text/plain"})
+    /*@RequestMapping(value="/metrics" ,produces={"text/plain"})
     public String metrics() {
     	StringWriter writer = new StringWriter();
     	//Vector e = new Vector();   	
@@ -103,7 +103,7 @@ public class HelloController {
             return e.getMessage();
         }
         return writer.toString();
-    }
+    }*/
     
     @RequestMapping(value="/metricsCounter" ,produces={"text/plain"})
     public String metricsCounter() {
@@ -166,5 +166,21 @@ public class HelloController {
         }
         return writer.toString();
     }
-
+    
+    @RequestMapping(value="/metricsGuavaCache" ,produces={"text/plain"})
+    public String metricsGuavaCache() {
+    	StringWriter writer = new StringWriter();
+    	//Vector e = new Vector();   	
+        try {
+        	
+            TextFormat2.write004(
+                    writer, CollectorRegistry.defaultRegistry.metricFamilySamples(),
+                    "guava_cache");
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return writer.toString();
+    }
+    
+    
 }
