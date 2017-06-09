@@ -2,10 +2,12 @@ package springboot.example01;
 
 
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Proxy.ProxyType;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+
 import util.page.alertmanager.AlertManagerMainPage;
 import util.page.grafana.GrafanaAddDataSource;
 import util.page.grafana.GrafanaHomeDashboard;
@@ -34,7 +36,15 @@ public class Example12Final {
 		return driver;
 	}
 	
-	public static void sleep(int seconds) {
+	private static void sleep(int seconds) {
+		//BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		/*try {
+			reader.readLine();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}*/
+		
 		try {
 			TimeUnit.SECONDS.sleep(seconds);
 		} catch (InterruptedException e) {
@@ -79,13 +89,13 @@ public class Example12Final {
 		MainGraphPage page =new MainGraphPage(driver, "http://localhost:9090/graph");
 		sleep(5);
 		page.getConfigPage();
-		sleep(5);
+		sleep(25);
 		page =new MainGraphPage(driver, "http://localhost:9090/graph");
 		page.getTargetsPage();
-		sleep(5);
+		sleep(25);
 		page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		page.fillAndDrawGraph("up");
-		sleep(5);
+		sleep(25);
 	}
 	
 	private static void showJMeter() {
@@ -98,7 +108,7 @@ public class Example12Final {
 		//ALERT MANAGER
 		driver.get("http://localhost:8080/05Alertmanager.html");
 		new AlertManagerMainPage(driver);
-		sleep(5);
+		sleep(25);
 	}
 	
 	private static void showGrafana() {
@@ -118,7 +128,7 @@ public class Example12Final {
 		grafanaAddDataSource = grafanaAddDataSource.getDashboardInput();
 		sleep(3);
 		grafanaAddDataSource.getPrometheusStats();
-		sleep(10);
+		sleep(25);
 	}
 	
 	private static void showBlackBoxMonitoring() {
@@ -150,7 +160,7 @@ public class Example12Final {
 		sleep(15);
 		MainGraphPage page = new MainGraphPage(driver, "http://localhost:9090/graph");
 		page = page.fillAndDrawGraph("jvm_memory_bytes_used{area=\"heap\"}");
-		sleep(15);
+		sleep(25);
 	}
 	
 	private static void showWhiteBoxMonitoring() {
@@ -275,10 +285,7 @@ public class Example12Final {
 		showMetricSummary();
 		showMetricHistogram();
 		
-		
-
 		showMetricGuavaCache();
-
 		showQuestion();
 
 		//end page
